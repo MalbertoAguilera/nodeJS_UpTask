@@ -1,21 +1,9 @@
 const express = require("express");
+const routes = require('./routes');
 
 //crear una aplicacion de express
 const app = express();
 
-const productos = [
-  {
-    producto: "libro",
-    precio: 20,
-  },
-];
-
-//ruta para el home
-//middleware de express
-//verbos post delete update get
-//'use' todos los verbos
-app.use("/", (request, response) => {
-  response.json(productos);
-});
+app.use('/', routes());
 
 app.listen(3000);
