@@ -11,5 +11,6 @@ module.exports = function(){
       //verbos post delete update get
       //'use' todos los verbos
       router.get("/", projectsController.projectsHome);
+      router.get('/new-project', projectsController.formProject);
       return router;
 }

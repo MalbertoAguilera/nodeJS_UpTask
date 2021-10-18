@@ -4,3 +4,9 @@ exports.projectsHome = (req, res) => {
     namePage : 'Proyectos'
   });
 };
+
+exports.formProject = (req, res) => {
+  res.render('newProject', {
+    namePage: 'Nuevo Proyecto'
+  });
+}
