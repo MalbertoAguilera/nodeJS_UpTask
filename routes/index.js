@@ -10,7 +10,8 @@ module.exports = function(){
       //middleware de express
       //verbos post delete update get
       //'use' todos los verbos
-      router.get("/", projectsController.projectsHome);
+      router.get("/", projectsController.homeProject);
       router.get('/new-project', projectsController.formProject);
+      router.post('/new-Project', projectsController.newProject);
       return router;
 }
