@@ -4,6 +4,10 @@ block content
       .contenido-principal 
             h1 #{namePage}
 
+            if errors
+                  each error in errors
+                        .alerta.error= error.text
+
             form.agregar-proyecto(action='/new-project' method='POST')
                   .campo 
                         label(for="nombre") Nombre Proyecto: 
