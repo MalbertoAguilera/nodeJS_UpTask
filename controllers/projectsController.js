@@ -1,3 +1,5 @@
+const Proyectos = require("../model/Projects");
+
 exports.homeProject = (req, res) => {
   //render toma como parametro el nombre del html de pug
   res.render("index", {
@@ -16,11 +18,11 @@ exports.newProject = (req, res) => {
   // console.log(req.body);
 
   //validar el input
-  const { nombre } = req.body;
+  const { name } = req.body;
   let errors = [];
-  console.log(nombre);
+  console.log(name);
 
-  if (!nombre) {
+  if (!name) {
     errors.push({ text: "Agrega un nombre al proyecto" });
   }
 
@@ -28,9 +30,11 @@ exports.newProject = (req, res) => {
   if (errors.length) {
     res.render("newProject", {
       namePage: "NuevoProyecto",
-      errors
+      errors,
     });
-  } else{
-    //insertar en una base de datos
+  } else {
+    Proyectos.create({name})
+      .then(()=>console.log("Insertado Correctamente"))
+      .catch(error =>console.log(error));
   }
 };
