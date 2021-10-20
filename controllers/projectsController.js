@@ -1,4 +1,4 @@
-const Proyectos = require("../model/Projects");
+const Projects = require("../model/Projects");
 
 exports.homeProject = (req, res) => {
   //render toma como parametro el nombre del html de pug
@@ -13,7 +13,7 @@ exports.formProject = (req, res) => {
   });
 };
 
-exports.newProject = (req, res) => {
+exports.newProject = async (req, res) => {
   //Enviar a la consola
   // console.log(req.body);
 
@@ -33,8 +33,8 @@ exports.newProject = (req, res) => {
       errors,
     });
   } else {
-    Proyectos.create({name})
-      .then(()=>console.log("Insertado Correctamente"))
-      .catch(error =>console.log(error));
+    const project = await Projects.create({name});
+    res.redirect('/');
+      
   }
 };
