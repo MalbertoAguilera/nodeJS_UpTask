@@ -5,10 +5,18 @@ const routes = require('./routes');
 const path = require('path');
 const bodyParser = require('body-parser');
 
+//crear conexion a base de datos
+const db = require('./config/db');
+//importar el modelo
+require('./model/Projects');
+db.sync()
+      .then(()=>console.log('Conectado al servidor'))
+      .catch(error => console.log(error))
+
 //crear una aplicacion de express
 const app = express();
 
-//Donde caragar archivos estaticos
+//Donde cargar archivos estaticos
 app.use(express.static('public'));
 
 //habilitar pug
