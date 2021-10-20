@@ -1,4 +1,6 @@
 const Projects = require("../model/Projects");
+//dependencia para formatear URL
+const slug = require('slug');
 
 exports.homeProject = (req, res) => {
   //render toma como parametro el nombre del html de pug
@@ -33,7 +35,8 @@ exports.newProject = async (req, res) => {
       errors,
     });
   } else {
-    const project = await Projects.create({name});
+    const url = slug(name).toLowerCase()
+    const project = await Projects.create({name, url});
     res.redirect('/');
       
   }
