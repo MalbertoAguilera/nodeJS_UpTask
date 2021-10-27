@@ -1,10 +1,12 @@
 const Projects = require("../model/Projects");
 
 
-exports.homeProject = (req, res) => {
+exports.homeProject = async (req, res) => {
+  const projects = await Projects.findAll();
   //render toma como parametro el nombre del html de pug
   res.render("index", {
     namePage: "Proyectos",
+    projects
   });
 };
 
