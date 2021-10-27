@@ -4,6 +4,7 @@ const routes = require('./routes');
 //path lee el FileSystem LIBRERIA DE NODEJS
 const path = require('path');
 const bodyParser = require('body-parser');
+const helpers = require('./helpers');
 
 //crear conexion a base de datos
 const db = require('./config/db');
@@ -21,6 +22,11 @@ app.use(express.static('public'));
 
 //habilitar pug
 app.set('view engine', 'pug');
+
+app.use((req, res, next) => {
+      res.locals.vardump = helpers.vardump;
+      next();
+})
 
 //añadir la carpeta de las vistas
 //dirname retorna el directorio principal del FSystem
